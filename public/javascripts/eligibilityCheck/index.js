@@ -3,10 +3,10 @@ $(document).ready(function () {
     document.querySelector("#eligibility-check-progress").classList.add("d-none");
     let modalContents = document.querySelector("#eligibility-modal-content");
     let errorArea = modalContents.querySelector("#error-msg");
-    errorArea.classList.remove("d-none");
+    errorArea.classList.add("d-none");
     errorArea.textContent = "";
     let successArea = modalContents.querySelector("#success-msg");
-    successArea.classList.remove("d-none");
+    successArea.classList.add("d-none");
     successArea.textContent = "";
 });
 
@@ -50,6 +50,11 @@ function onEligibilityBtnClicked() {
             let value = result.message;
             let errorMessage = "Uh-Oh. Something went wrong. Please try again.";
             if (errorCode >= 300 || errorCode < 200) {
+                if (errorCode == 404) {
+                    errorMessage = "Subscriber not found";
+                } else if (errorCode == 400) {
+                    errorMessage = "Please check dependent and policy IDs";
+                }
                 // Some error happened
                 let errorArea = modalContents.querySelector("#error-msg");
                 errorArea.classList.remove("d-none");

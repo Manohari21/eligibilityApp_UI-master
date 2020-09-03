@@ -71,7 +71,7 @@ function getDependents(req, benefits) {
             state: dependent.dependentstate,
             country: dependent.dependentcountry
         };
-        var selectedPolicies= extractRelevantBenefits(formatArray(dependent.dependentpolicy),benefits);
+        var selectedPolicies = extractRelevantBenefits(formatArray(dependent.dependentpolicy), benefits);
         let newDependent = {
             dependentName: dependentName,
             dependentAddress: dependentAddress,
@@ -87,14 +87,23 @@ function extractRelevantBenefits(selectedBenefits, allBenefits) {
     // Filter allBenefits based on IDs returned from selectedBenefits
     // [1] = selected, allBenefits = [{policyId: 1, policyName: "1"}, {polciyId: 2, policyName: "2"}]
     // Returns => [{policyId: 1, policyName: "1"}]
-    return allBenefits.filter(benefit => selectedBenefits.includes(benefit.policyId));
+    let newBenefits = allBenefits.filter(benefit => {
+        if (selectedBenefits.includes(benefit.policyId)) {
+            benefit.currentEligibleAmount = benefit.claimableAmount;
+            benefit.totalEligibleAmount = benefit.claimableAmount;
+            benefit.claimedAmount = 0;
+            return true;
+        }
+        return false;
+    });
+    return newBenefits;
 }
 
 router.post("/", function (req, res, next) {
     logger.info("Requesting Policies from: " + POLICY_SERVICE_URL);
     return axios.get(POLICY_SERVICE_URL).then(function (response) {
         // Extract the selected policy information
-        
+
         let dependents = getDependents(req, response.data);
         let subscribers = getSubscriber(req, response.data, dependents);
 

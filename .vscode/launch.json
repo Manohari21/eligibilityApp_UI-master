@@ -13,11 +13,11 @@
             ],
             "program": "${workspaceFolder}\\bin\\www",
             "env": {
-                "POLICY_SERVICE_URL": "http://localhost:8080/getAllPolicies",
-                "ELIGIBILITY_SERVICE_URL": "http://localhost:8080/getBenefits",
+                "POLICY_SERVICE_URL": "http://localhost:8210/getAllPolicies",
+                "ELIGIBILITY_SERVICE_URL": "http://localhost:8210/getBenefits",
                 "LOG_LEVEL": "info",
-                "ENROLLMENT_SERVICE_URL": "http://localhost:8080/enrollment",
-                "POLICY_DETAILS_URL": "http://localhost:8080/getPolicyDetails"
+                "ENROLLMENT_SERVICE_URL": "http://localhost:8210/enrollment",
+                "POLICY_DETAILS_URL": "http://localhost:8210/getPolicyDetails"
             }
         }
     ]

@@ -18,7 +18,7 @@ router.post("/", function (req, res, next) {
         logger.error("Incorrect values received from UI. SubscriberID, PolicyID, DependentID not found.");
         return res.send({ code: 400, message: errorMessage });
     }
-    return axios.get(ELIGIBILITY_SERVICE_URL, { params: { subscriberId: subscriberId, plan: policyId, uniqueId: dependentId } })
+    return axios.get(ELIGIBILITY_SERVICE_URL, { params: { subscriberId: subscriberId, policyId: policyId, dependentId: dependentId } })
         .then(function (success) {
             let isEligible = success.data.eligible;
             let message = isEligible ? `Subscriber: ${success.data.subscriberId} is eligibile` :

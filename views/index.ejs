@@ -1,0 +1,44 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home | HealthApp</title>
+  <%- include("./helpers/bootstrap.ejs") %>
+</head>
+
+<body>
+  <%- include("./helpers/navigation.ejs") %>
+  <main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">HealthApp</h1>
+        <p>Welcome to HealthApp, your one-stop shop for everything Medical.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Subscriber Eligibility Check</h2>
+          <p>Check your subscriber or your dependent eligibility now! Navigate to Eligibility Check above or click on
+            the link below.</p>
+          <p><a class="btn btn-secondary" href="/eligibility" role="button">Check Now! »</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Enroll new subscribers</h2>
+          <p>Now you can enroll new subscribers yourself! Navigate to Enroll above or click on the link below.</p>
+          <p><a class="btn btn-secondary" href="/enrollment" role="button">Enroll Now! »</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+    </div> <!-- /container -->
+
+  </main>
+
+  <%- include("helpers/footer.ejs") %>
+
+</body>

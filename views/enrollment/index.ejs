@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment | HealthApp</title>
+    <%- include("../helpers/bootstrap.ejs") %>
+</head>
+
+<body>
+    <%- include("../helpers/navigation.ejs") %>
+    <main role="main">
+        <div class="container">
+            <div id="enrollment-response" data-success="<%= data.enrollMessage %>"
+                data-failure="<%= data.failedEnrollMessage %>"></div>
+            <%- include("successModal.ejs") %>
+            <h1 class="mt-2">Enroll New Subscriber</h1>
+            <hr>
+            <form class="pt-2" method="POST" action="/enrollment" id="register-form">
+                <div id="subscriber-info">
+                    <%- include("./subscriberForm.ejs") %>
+                </div>
+                <div id="dependent-info" class="pb-2">
+                    <%- include("dependentTable.ejs") %>
+                    <%- include("dependentForm.ejs") %>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <hr>
+        </div>
+        <%- include("../helpers/footer.ejs") %>
+    </main>
+    <script src="javascripts/enrollment/index.js"></script>
+</body>
+
+</html>

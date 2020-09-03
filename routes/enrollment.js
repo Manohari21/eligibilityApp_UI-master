@@ -115,7 +115,7 @@ router.post("/", function (req, res, next) {
             data: subscribers
         }).then((enrollmentResponse) => {
             logger.info("Response status: " + enrollmentResponse.status);
-            let message = enrollmentResponse.data ? "success" : "failure";
+            let message = enrollmentResponse.data ? "Registration Successful" : "Registration Failure";
             let redirectUrl = url.format({
                 pathname: "/enrollment",
                 query: {

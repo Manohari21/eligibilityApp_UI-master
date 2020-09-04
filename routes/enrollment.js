@@ -75,7 +75,7 @@ function getDependents(req, benefits) {
         let selectedPolicies = extractRelevantBenefits(formatArray(dependent.dependentpolicy), benefits);
         let newDependent = {
             dependentName: dependentName,
-            dependentRelationship: dependentRelationship,
+            dependentRelation: dependentRelationship,
             dependentAddress: dependentAddress,
             dependentDateOfBirth: dependent.dependentdateofbirth,
             dependentBenefits: selectedPolicies
@@ -130,6 +130,10 @@ router.post("/", function (req, res, next) {
             return res.redirect(getEnrollmentRedirectMessage());
         });
 
+    }).catch(function (getAllPolicyError) {
+        logger.error("Unable to fetch all policies:");
+        logger.error(getAllPolicyError);
+        return res.redirect(getEnrollmentRedirectMessage());
     });
 });
 

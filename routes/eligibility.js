@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
 router.post("/", function (req, res, next) {
     let subscriberId = req.body.subscriberId;
     let policyId = req.body.policyId;
-    let dependentId = req.body.dependentId;
+    let dependentId = `${subscriberId}${req.body.dependentId}`;
     logger.info(`SubscriberID: ${subscriberId}, PolicyID: ${policyId}, DependentID: ${dependentId}`);
     const errorMessage = "Unable to proceed";
     if (!subscriberId || !policyId || !dependentId) {
@@ -21,16 +21,17 @@ router.post("/", function (req, res, next) {
     return axios.get(ELIGIBILITY_SERVICE_URL, { params: { subscriberId: subscriberId, policyId: policyId, dependentId: dependentId } })
         .then(function (success) {
             let isEligible = success.data.eligible;
-            let message = isEligible ? `Subscriber: ${success.data.subscriberId} is eligibile` :
-                `Subscriber: ${success.data.subscriberId} is not eligibile`;
-            if (dependentId == "00") {
+            let message = isEligible ? `Subscriber ${subscriberId} is eligibile` :
+                `Subscriber: ${subscriberId} is not eligibile`;
+            let code = isEligible ? 200 : 201;
+            if (dependentId == `${subscriberId}00`) {
                 logger.info("Subscriber Eligibility Check: " + subscriberId);
             } else {
                 message = isEligible ? `Dependent ${dependentId} is eligibile` : `Dependent ${dependentId} is not eligible`;
                 logger.info("Dependent Eligibility Check: " + dependentId);
             }
             logger.info(`Success! Status Message: ${message}`);
-            return res.send({ code: success.status, message: message });
+            return res.send({ code: code, message: message });
         })
         .catch(function (error) {
             logger.error("Received error: " + error);

@@ -1,14 +1,14 @@
 $(document).ready(function () {
     $('#eligibility-check-info').modal('hide');
     document.querySelector("#eligibility-check-progress").classList.add("d-none");
-    let modalContents = document.querySelector("#eligibility-modal-content");
-    let errorArea = modalContents.querySelector("#error-msg");
-    errorArea.classList.add("d-none");
-    errorArea.textContent = "";
-    let successArea = modalContents.querySelector("#success-msg");
-    successArea.classList.add("d-none");
-    successArea.textContent = "";
+    resetDocumentContents();
+    resetInputTags();
+    resetSelect();
 });
+
+function resetSelect() {
+    $('#dependent-id').prop('selectedIndex', 0);
+}
 
 function addFieldValidationBorder(tag) {
     document.querySelector(tag).classList.add("border", "border-danger");
@@ -21,24 +21,16 @@ function removeFieldValidationBorder(tag) {
 function onEligibilityBtnClicked() {
     let subscriberId = document.querySelector("#subscriber-id").value;
     let policyId = document.querySelector("#policy-id").value;
-    let dependentId = document.querySelector("#dependent-id").value;
+    let dependentId = $("#dependent-id option:selected").val();
     let ids = ["#subscriber-id", "#dependent-id", "#policy-id"];
     let modalContents = document.querySelector("#eligibility-modal-content");
-    resetTagContents("#error-msg", modalContents);
-    resetTagContents("#success-msg", modalContents);
+    resetDocumentContents();
 
     console.log(subscriberId, policyId, dependentId);
-    if (!subscriberId || !policyId || !dependentId) {
-        // border border-danger
-        if (!subscriberId) {
-            addFieldValidationBorder("#subscriber-id");
-        }
-        if (!policyId) {
-            addFieldValidationBorder("#policy-id");
-        }
-        if (!dependentId) {
-            addFieldValidationBorder("#dependent-id");
-        }
+    if (!dependentId || dependentId == "Select a value") {
+        alert("Select Self or a Dependent Type!");
+    } else if (!policyId || !subscriberId) {
+        alert("Policy and Subscriber ID are required!");
     } else {
         let data = {
             subscriberId: subscriberId,
@@ -49,14 +41,17 @@ function onEligibilityBtnClicked() {
         // Submit it to NodeJS (jQuery)
         $.post("/eligibility", data, function (result, status, jqXHR) {// success callback
             document.querySelector("#eligibility-check-progress").classList.remove("d-none");
-
             let errorCode = result.code;
             let errorMessage = result.message;
             if (errorCode >= 300 || errorCode < 200) {
                 // Some error happened
                 updateTagContents("#error-msg", modalContents, errorMessage);
             } else {
-                updateTagContents("#success-msg", modalContents);
+                if (errorCode == 200) {
+                    updateTagContents("#success-eligible-msg", modalContents, errorMessage);
+                } else {
+                    updateTagContents("#success-ineligible-msg", modalContents, errorMessage);
+                }
             }
             for (let id of ids) {
                 removeFieldValidationBorder(id);
@@ -65,6 +60,17 @@ function onEligibilityBtnClicked() {
             document.querySelector("#eligibility-check-progress").classList.add("d-none");
         });
     }
+}
+
+function resetDocumentContents() {
+    let modalContents = document.querySelector("#eligibility-modal-content");
+    resetTagContents("#error-msg", modalContents);
+    resetTagContents("#success-eligible-msg", modalContents);
+    resetTagContents("#success-ineligible-msg", modalContents);
+}
+
+function resetInputTags() {
+    $("#eligibility-check-form input[type='text']").val("");
 }
 
 function updateTagContents(tag, parentElement = null, value = "Registration Successful") {

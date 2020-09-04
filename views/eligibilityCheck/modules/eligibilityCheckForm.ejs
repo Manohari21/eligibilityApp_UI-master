@@ -1,17 +1,24 @@
-<form>
+<form id="eligibility-check-form">
     <div class="form-group">
         <label for="subscriber-id">Subscriber ID</label>
-        <input type="text" class="form-control" id="subscriber-id" aria-describedby="subscriber-id-help" required>
+        <input type="text" class="form-control" id="subscriber-id" aria-describedby="subscriber-id-help">
         <small id="subscriber-id-help" class="form-text text-muted">Please add your ID</small>
     </div>
-    <div class="form-group">
-        <label for="dependent-id">Dependent ID</label>
-        <input type="text" class="form-control" id="dependent-id" aria-describedby="dependent-id-help" required>
-        <small id="dependent-id-help" class="form-text text-muted">Please add the Dependent ID</small>
+    <div class="form-group" id="dependent-relationship-select">
+        <label for="dependent-id">Relationship</label>
+        <select class="form-control" id="dependent-id">
+            <option>Select a value</option>
+            <option value="00">Self</option>
+            <option value="01">Father</option>
+            <option value="02">Mother</option>
+            <option value="03">Spouse</option>
+            <option value="04">Daughter</option>
+            <option value="05">Son</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="policy-id">Policy Number</label>
-        <input type="text" class="form-control" id="policy-id" aria-describedby="policy-id-help" required>
+        <input type="text" class="form-control" id="policy-id" aria-describedby="policy-id-help">
         <small id="policy-id-help" class="form-text text-muted">Please add the Policy ID</small>
     </div>
     <input type="button" class="btn btn-primary" value="Submit" onclick="onEligibilityBtnClicked();" />

@@ -23,6 +23,10 @@ function onEligibilityBtnClicked() {
     let policyId = document.querySelector("#policy-id").value;
     let dependentId = document.querySelector("#dependent-id").value;
     let ids = ["#subscriber-id", "#dependent-id", "#policy-id"];
+    let modalContents = document.querySelector("#eligibility-modal-content");
+    resetTagContents("#error-msg", modalContents);
+    resetTagContents("#success-msg", modalContents);
+
     console.log(subscriberId, policyId, dependentId);
     if (!subscriberId || !policyId || !dependentId) {
         // border border-danger
@@ -45,24 +49,14 @@ function onEligibilityBtnClicked() {
         // Submit it to NodeJS (jQuery)
         $.post("/eligibility", data, function (result, status, jqXHR) {// success callback
             document.querySelector("#eligibility-check-progress").classList.remove("d-none");
-            let modalContents = document.querySelector("#eligibility-modal-content");
+
             let errorCode = result.code;
-            let value = result.message;
-            let errorMessage = "Uh-Oh. Something went wrong. Please try again.";
+            let errorMessage = result.message;
             if (errorCode >= 300 || errorCode < 200) {
-                if (errorCode == 404) {
-                    errorMessage = "Subscriber not found";
-                } else if (errorCode == 400) {
-                    errorMessage = "Please check dependent and policy IDs";
-                }
                 // Some error happened
-                let errorArea = modalContents.querySelector("#error-msg");
-                errorArea.classList.remove("d-none");
-                errorArea.textContent = errorMessage;
+                updateTagContents("#error-msg", modalContents, errorMessage);
             } else {
-                let successArea = modalContents.querySelector("#success-msg");
-                successArea.classList.remove("d-none");
-                successArea.textContent = value;
+                updateTagContents("#success-msg", modalContents);
             }
             for (let id of ids) {
                 removeFieldValidationBorder(id);
@@ -71,4 +65,26 @@ function onEligibilityBtnClicked() {
             document.querySelector("#eligibility-check-progress").classList.add("d-none");
         });
     }
+}
+
+function updateTagContents(tag, parentElement = null, value = "Registration Successful") {
+    let element = formatElement(tag, parentElement);
+    element.classList.remove("d-none");
+    element.textContent = value;
+}
+
+function formatElement(tag, parentElement = null) {
+    let element = null;
+    if (!parentElement) {
+        element = parentElement.querySelector(tag);
+    } else {
+        element = document.querySelector(tag);
+    }
+    return element;
+}
+
+function resetTagContents(tag, parentElement = null) {
+    let element = formatElement(tag, parentElement);
+    element.classList.add("d-none");
+    element.textContent = "";
 }

@@ -23,18 +23,30 @@ router.post("/", function (req, res, next) {
             let isEligible = success.data.eligible;
             let message = isEligible ? `Subscriber: ${success.data.subscriberId} is eligibile` :
                 `Subscriber: ${success.data.subscriberId} is not eligibile`;
+            if (dependentId == "00") {
+                logger.info("Subscriber Eligibility Check: " + subscriberId);
+            } else {
+                message = isEligible ? `Dependent ${dependentId} is eligibile` : `Dependent ${dependentId} is not eligible`;
+                logger.info("Dependent Eligibility Check: " + dependentId);
+            }
             logger.info(`Success! Status Message: ${message}`);
             return res.send({ code: success.status, message: message });
         })
         .catch(function (error) {
             logger.error("Received error: " + error);
             logger.debug(error.response);
-            if (error.response) {
-                logger.error(error.response.status);
-                logger.error(error.response.data);
-                return res.send({ code: error.response.status, message: errorMessage });
+            if (error.response.status >= 500) {
+                logger.error("Server error encountered");
+                logger.error("Status: " + error.response.status);
+                logger.error("Error Message: " + error.response.data);
+                logger.error(error);
+                return res.send({ code: 500, message: errorMessage });
+            } else {
+                logger.debug(error.response.status);
+                logger.debug(error.response.data.errorCode);
+                logger.debug(error.response.data.errorMessage)
+                return res.send({ code: error.response.status, message: "Please check Subscriber ID, Policy ID, and Dependent ID." });
             }
-            return res.send({ code: 500, message: errorMessage })
         });
 });
 

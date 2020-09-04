@@ -71,9 +71,11 @@ function getDependents(req, benefits) {
             state: dependent.dependentstate,
             country: dependent.dependentcountry
         };
+        var dependentRelationship=dependent.dependentrelationship;
         var selectedPolicies= extractRelevantBenefits(formatArray(dependent.dependentpolicy),benefits);
         let newDependent = {
             dependentName: dependentName,
+            dependentRelationship: dependentRelationship,
             dependentAddress: dependentAddress,
             dependentDateOfBirth: dependent.dependentdateofbirth,
             dependentBenefits: selectedPolicies

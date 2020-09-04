@@ -47,10 +47,13 @@ function renderDependentsTable() {
 
 function onDependentAdd() {
     let dependent = {};
+    
     for (let element of $("#dependent-modal :input")) {
+        
         if (element.name && element.value) {
             if (element.type == "checkbox") {
                 if (element.checked) {
+                    
                     if (Array.isArray(dependent[element.name])) {
                         dependent[element.name].push(element.value);
                     }
@@ -63,7 +66,9 @@ function onDependentAdd() {
             }
         }
     }
-    if (dependent.dependentpolicy && dependent.dependentcountry && dependent.dependentstate && dependent.dependentcity && dependent.dependentstreet && dependent.dependentdateofbirth && dependent.dependentfirstname && dependent.dependentlastname) {
+    dependent.dependentrelationship = $("#dependentrelationship option:selected").text();
+    if (dependent.dependentpolicy && dependent.dependentrelationship && dependent.dependentcountry && dependent.dependentstate && dependent.dependentcity && dependent.dependentstreet && dependent.dependentdateofbirth && dependent.dependentfirstname && dependent.dependentlastname) {
+        //dependent.dependentrelationship = $("#dependentrelationship option:selected").text();
         allDependents.push(dependent);
         $("#dependent-modal").modal("hide");
         renderDependentsTable();
@@ -81,4 +86,5 @@ function clearDependentFormContents() {
     $('#dependent-modal').find('input[type="text"]').val('');
     $('#dependent-modal').find('input[type="date"]').val('YYYY-MM-DD');
     $("#policy-div").find("input:checkbox").prop('checked', false); 
+    $('#dependentrelationship').prop('selectedIndex',0);
 }

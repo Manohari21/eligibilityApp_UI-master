@@ -11,6 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
+            "outputCapture": "std",
             "program": "${workspaceFolder}\\bin\\www",
             "env": {
                 "POLICY_SERVICE_URL": "http://localhost:8210/getAllPolicies",
@@ -18,6 +19,23 @@
                 "LOG_LEVEL": "info",
                 "ENROLLMENT_SERVICE_URL": "http://localhost:8210/enrollment",
                 "POLICY_DETAILS_URL": "http://localhost:8210/getPolicyDetails"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch VirtualBox Spring",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outputCapture": "std",
+            "program": "${workspaceFolder}\\bin\\www",
+            "env": {
+                "POLICY_SERVICE_URL": "http://192.168.56.104:8080/getAllPolicies",
+                "ELIGIBILITY_SERVICE_URL": "http://192.168.56.104:8080/getBenefits",
+                "LOG_LEVEL": "info",
+                "ENROLLMENT_SERVICE_URL": "http://192.168.56.104:8080/enrollment",
+                "POLICY_DETAILS_URL": "http://192.168.56.104:8080/getPolicyDetails"
             }
         }
     ]

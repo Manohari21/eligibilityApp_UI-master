@@ -61,19 +61,21 @@ function getDependents(req, benefits) {
     let dependents = JSON.parse(req.body.dependents);
     let result = [];
     for (let dependent of dependents) {
-        var dependentName = {
+        let dependentName = {
             firstName: dependent.dependentfirstname,
             lastName: dependent.dependentlastname
         };
-        var dependentAddress = {
+        let dependentAddress = {
             street: dependent.dependentstreet,
             city: dependent.dependentcity,
             state: dependent.dependentstate,
             country: dependent.dependentcountry
         };
-        var selectedPolicies = extractRelevantBenefits(formatArray(dependent.dependentpolicy), benefits);
+        let dependentRelationship = dependent.dependentrelationship;
+        let selectedPolicies = extractRelevantBenefits(formatArray(dependent.dependentpolicy), benefits);
         let newDependent = {
             dependentName: dependentName,
+            dependentRelationship: dependentRelationship,
             dependentAddress: dependentAddress,
             dependentDateOfBirth: dependent.dependentdateofbirth,
             dependentBenefits: selectedPolicies

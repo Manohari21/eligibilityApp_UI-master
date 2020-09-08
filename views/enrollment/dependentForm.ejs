@@ -3,7 +3,8 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="dependent-modal" tabindex="-1" aria-labelledby="dependent-modal-label" aria-hidden="true">
+<div class="modal fade" id="dependent-modal" tabindex="-1" aria-labelledby="dependent-modal-label" aria-hidden="true"
+    style="background-color:#7FFFD4">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,67 +13,73 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-first-name">Dependent First Name</label>
-                            <input type="text" class="form-control" name="dependentfirstname" id="dependent-first-name">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-last-name">Dependent Last Name</label>
-                            <input type="text" class="form-control" id="dependent-last-name" name="dependentlastname">
-                        </div>
+           <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-first-name">First Name</label>
+                        <input type="text" class="form-control" name="dependentfirstname" id="dependent-first-name" >
                     </div>
                 </div>
-                <div class="form-group" id="relationship">
-                    <label for="dependent-relationship">Relationship</label>
-                    <select class="form-control" id="dependentrelationship">
-                        <option>Select a value</option>
-                        <option value="father">Father</option>
-                        <option value="mother">Mother</option>
-                        <option value="spouse">Spouse</option>
-                        <option value="son">Son</option>
-                        <option value="daughter">Daughter</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-street">Dependent Street</label>
-                            <input type="text" class="form-control" id="dependent-street" name="dependentstreet"
-                                aria-describedby="dependent-street-help">
-                            <small id="dependent-street-help" class="form-text text-muted">Street name/Society
-                                Name/Alley Name</small>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-city">Dependent City</label>
-                            <input type="text" name="dependentcity" class="form-control" id="dependent-city">
-                        </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-last-name">Last Name</label>
+                        <input type="text" class="form-control" id="dependent-last-name" name="dependentlastname">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-state">Dependent State</label>
-                            <input type="text" class="form-control" name="dependentstate" id="dependent-state">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="dependent-country">Dependent Country</label>
-                            <input type="text" name="dependentcountry" class="form-control" id="dependent-country">
-                        </div>
+            </div>
+            <div class="form-group" id="relationship">
+                <label for="dependentrelationship">Relationship</label>
+                <select class="form-control" id="dependentrelationship">
+                    <option>Select a value</option>
+                    <option value="father">Father</option>
+                    <option value="mother">Mother</option>
+                    <option value="spouse">Spouse</option>
+                    <option value="son">Son</option>
+                    <option value="daughter">Daughter</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-country">Country</label>
+                       <select name="dependentcountry" class="countries form-control" id="dependent-country">
+                                <option value="">Select Country</option>
+                            </select>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-state">State</label>
+                        <select name="dependentstate" class="states form-control" id="dependent-state">
+                                <option value="">Select State</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-city">City</label>
+                         <select name="dependentcity" class="cities form-control"  id="dependent-city" >
+                                <option value="">Select City</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="dependent-street">Street</label>
+                        <input type="text" class="form-control" id="dependent-street" name="dependentstreet"  aria-describedby="street-help">
+                        <small id="street-help" class="form-text text-muted">Street name/Society Name/Alley Name</small>
+                    </div>
+                </div>
+            </div>
                 <div class="form-group">
-                    <label for="dependent-dob">Dependent Date Of Birth</label>
-                    <input type="date" min="1900-01-01" max="2500-12-31" class="form-control"
-                        name="dependentdateofbirth" id="dependent-dob">
+                    <label for="dependent-dob">Date Of Birth</label>
+                    <input type="text" class="form-control" name="dependentdateofbirth" id="dependent-dob" >
+                    <script>
+                        $("#dependent-dob").datepicker({ maxDate: 0, dateFormat: 'yy-mm-dd' });
+                    </script>
                 </div>
                 <div class="form-group" id="policy-div">
                     <label for="policy-check">Available Policies</label>
@@ -88,7 +95,7 @@
                     <% }) %>
                     <% } %>
                 </div>
-            </div>
+           </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="onDependentAdd();">Add</button>

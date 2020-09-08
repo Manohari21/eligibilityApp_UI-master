@@ -22,13 +22,14 @@ $("document").ready(function () {
         $("<input />").attr("type", "hidden")
             .attr("name", "dependents")
             .attr("value", JSON.stringify(allDependents))
-            .appendTo("#register-form");
+            .appendTo("#register-form");             
         if ($('#subscriber-policy-div.checkbox-group.required :checkbox:checked').length <= 0) {
             alert("At least 1 policy is required!");
             return false;
         }
         return true;
     });
+   
 });
 
 function renderDependentsTable() {
@@ -71,6 +72,9 @@ function onDependentAdd() {
         }
     }
     dependent.dependentrelationship = $("#dependentrelationship option:selected").text();
+    // dependent.dependentcountry = $("#dependent-country option:selected").text();
+    // dependent.dependentstate = $("#dependent-state option:selected").text();
+    // dependent.dependentcity = $("#dependent-city option:selected").text();
     if (dependent.dependentpolicy && dependent.dependentrelationship != "Select a value" && dependent.dependentrelationship && dependent.dependentcountry && dependent.dependentstate && dependent.dependentcity && dependent.dependentstreet && dependent.dependentdateofbirth && dependent.dependentfirstname && dependent.dependentlastname) {
         allDependents.push(dependent);
         $("#dependent-modal").modal("hide");
@@ -90,4 +94,7 @@ function clearDependentFormContents() {
     $('#dependent-modal').find('input[type="date"]').val('YYYY-MM-DD');
     $("#policy-div").find("input:checkbox").prop('checked', false);
     $('#dependentrelationship').prop('selectedIndex', 0);
+    // $('#dependentcountry').prop('selectedIndex', 0);
+    // $('#dependentstate').prop('selectedIndex', 0);
+    // $('#dependentcity').prop('selectedIndex', 0);
 }

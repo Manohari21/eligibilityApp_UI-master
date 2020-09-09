@@ -94,7 +94,7 @@ function clearDependentFormContents() {
     $('#dependent-modal').find('input[type="date"]').val('YYYY-MM-DD');
     $("#policy-div").find("input:checkbox").prop('checked', false);
     $('#dependentrelationship').prop('selectedIndex', 0);
-    // $('#dependentcountry').prop('selectedIndex', 0);
-    // $('#dependentstate').prop('selectedIndex', 0);
-    // $('#dependentcity').prop('selectedIndex', 0);
+    $('#countryCode').prop('selectedIndex', 0);
+    $('#stateCode').prop('selectedIndex', 0);
+    $('#cityCode').prop('selectedIndex', 0);
 }

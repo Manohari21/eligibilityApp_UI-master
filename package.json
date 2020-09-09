@@ -8,10 +8,13 @@
   "dependencies": {
     "axios": "^0.20.0",
     "cookie-parser": "~1.4.4",
+    "date": "^1.0.2",
+    "date-and-time": "^0.14.1",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jquery": "^3.5.1",
     "morgan": "~1.9.1",
     "winston": "^3.3.3"
   }

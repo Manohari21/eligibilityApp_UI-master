@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col">
         <div class="form-group">
-            <label for="country">Country</label>
+            <label for="countryId">Country</label>
            <select name="country" class="countries form-control" id="countryId" required>
                     <option value="">Select Country</option>
                 </select>
@@ -23,7 +23,7 @@
     </div>
     <div class="col">
         <div class="form-group">
-            <label for="state">State</label>
+            <label for="stateId">State</label>
             <select name="state" class="states form-control" id="stateId" required>
                     <option value="">Select State</option>
                 </select>
@@ -33,7 +33,7 @@
 <div class="row">
     <div class="col">
         <div class="form-group">
-            <label for="city">City</label>
+            <label for="cityId">City</label>
              <select name="city" class="cities form-control"  id="cityId" required>
                     <option value="">Select City</option>
                 </select>
@@ -51,7 +51,9 @@
         <label for="dob">Date Of Birth</label>
         <input type="text" class="form-control" name="dateofbirth" id="dob" required>
         <script>
-            $("#dob").datepicker({ maxDate: 0, dateFormat: 'yy-mm-dd' });
+            $("#dob").datepicker({ maxDate: 0, dateFormat: 'yy-mm-dd',  changeMonth: true,
+     changeYear: true,yearRange: "1930:2020",showOtherMonths: true,
+    selectOtherMonths: true  });
         </script>
     </div>
     <div class="checkbox-group required" id="subscriber-policy-div">
@@ -68,3 +70,5 @@
         <% }) %>
         <% } %>
     </div>
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <!-- <script src="javascripts/enrollment/subscriberLocation.js"></script> -->

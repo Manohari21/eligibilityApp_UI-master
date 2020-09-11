@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
 var eligibilityRouter = require("./routes/eligibility");
 var enrollmentRouter = require("./routes/enrollment");
 var app = express();
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', loginRouter);
 app.use("/eligibility", eligibilityRouter);
 app.use("/enrollment", enrollmentRouter);
 

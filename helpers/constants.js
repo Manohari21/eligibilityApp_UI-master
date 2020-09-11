@@ -2,6 +2,7 @@ const ELIGIBILITY_SERVICE_URL = process.env.ELIGIBILITY_SERVICE_URL || "http://l
 const POLICY_SERVICE_URL = process.env.POLICY_SERVICE_URL || "http://localhost:8080/getAllPolicies";
 const POLICY_DETAILS_URL = process.env.POLICY_DETAILS_URL || "http://localhost:8080/getPolicyDetails";
 const ENROLLMENT_SERVICE_URL = process.env.ENROLLMENT_SERVICE_URL || "http://localhost:8080/enrollment";
+const LOGIN_SERVICE_URL = process.env.LOGIN_SERVICE_URL || "http://localhost:8080/getUser";
 const LOG_LEVEL = process.env.LOG_LEVEL || "info";
 
-module.exports = { ELIGIBILITY_SERVICE_URL, POLICY_SERVICE_URL, POLICY_DETAILS_URL, ENROLLMENT_SERVICE_URL, LOG_LEVEL }
+module.exports = { ELIGIBILITY_SERVICE_URL, POLICY_SERVICE_URL, POLICY_DETAILS_URL, ENROLLMENT_SERVICE_URL,LOGIN_SERVICE_URL, LOG_LEVEL }

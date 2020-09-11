@@ -18,7 +18,8 @@
                 "ELIGIBILITY_SERVICE_URL": "http://localhost:8080/getBenefits",
                 "LOG_LEVEL": "info",
                 "ENROLLMENT_SERVICE_URL": "http://localhost:8080/enrollment",
-                "POLICY_DETAILS_URL": "http://localhost:8080/getPolicyDetails"
+                "POLICY_DETAILS_URL": "http://localhost:8080/getPolicyDetails",
+                "LOGIN_SERVICE_URL" : "http://localhost:8080/getUser"
             }
         },
         {
@@ -35,7 +36,8 @@
                 "ELIGIBILITY_SERVICE_URL": "http://192.168.56.104:8080/getBenefits",
                 "LOG_LEVEL": "info",
                 "ENROLLMENT_SERVICE_URL": "http://192.168.56.104:8080/enrollment",
-                "POLICY_DETAILS_URL": "http://192.168.56.104:8080/getPolicyDetails"
+                "POLICY_DETAILS_URL": "http://192.168.56.104:8080/getPolicyDetails",
+                "LOGIN_SERVICE_URL" : "http://192.168.56.104:8080/getUser"
             }
         }
     ]

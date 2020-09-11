@@ -9,7 +9,7 @@ const { POLICY_SERVICE_URL, ENROLLMENT_SERVICE_URL } = require("../helpers/const
 const logger = require("../helpers/logger");
 const { format } = require("path");
 
-console.log(new Date());
+
 
 router.get("/", function (req, res, next) {
     // Request policy data from Spring

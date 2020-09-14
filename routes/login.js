@@ -26,7 +26,7 @@ router.post('/validate', (req, res) => {
         const data = response.data;
         if (data.name == req.body.username && data.password == req.body.password) {
             logger.info("Successfully authenticated username: " + data.name);
-            logger.info("role " + data.role)
+            //logger.info("role " + data.role)
             // if (data.role == "user") {
                 res.render('homepage.ejs', { username: req.body.username,userid: data.id});
             // } else if (data.role == "admin") {
